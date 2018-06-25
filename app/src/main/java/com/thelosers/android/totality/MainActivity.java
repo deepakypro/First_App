@@ -74,5 +74,17 @@ public class MainActivity extends AppCompatActivity {
   }
 
 
+  @Override
+  protected void onStart() {
+    super.onStart();
+    SharedPreferences pref = getSharedPreferences(
+        mSharedPreferenceName, Context.MODE_PRIVATE);
+    String username = pref.getString(mSharedPreferenceKey, null);
+
+    if (username != null) {
+      startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+      finish();
+    }
+  }
 }
 
